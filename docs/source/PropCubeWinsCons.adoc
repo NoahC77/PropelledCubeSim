@@ -1,0 +1,27 @@
+= Propelled Cube Team Win Cons and Summary
+
+== Summary of Minimum Viable Product
+
+A set of software which utilizes atleast one of UTD's HPC clusters to run a physics simulation which uses an ideal setting with no air resistance to simulate a cube navigating around geometric obstacles and improving the efficiency at which it moves around these geometric objects using some sort of machine learning and python. The usefulness of a visualization of the simulation is yet to be determined, but who knows.
+
+The efficiency of the cube's movement around the obstacles is measured in how far in the x-axis the cube travelled without touching a single obstacle or if the cube reaches the end of the 3D space. The cube starts at (0, 0, 0) with the dimensions of length = 10 and a large 3D space to move in which is walled off by the xz-plane and xy-plane. In an admittedly extremely abstract and ignorant way, our goal is to use Machine Learning to make a cube go super fast around a set of obstacles for as far as it can without touching anything or get to the other side of the 3D space.
+
+.Obstacles the cube will need to avoid
+
+* Cones
+* Sphere
+* Cubes
+* Pyramids
+
+.Required Characteristics of the MVP
+
+* Must use kinematic equations and stuff, *AIR RESISTANCE NOT INCLUDED*.
+* Cube navigation must be done through machine learning (no hardcode)
+
+== What we will use
+
+Development will be done on the 
+
+MUST BE FINISHED BY AUGUST 17
+
+
