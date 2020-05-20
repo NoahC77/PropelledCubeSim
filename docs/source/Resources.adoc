@@ -1,0 +1,11 @@
+== Useful Resources
+
+_All safari books can be accessed through https://www.utdallas.edu/library/services/electronic-media-and-streaming/ebooks/[UTD Library Website]_
+
+.Books
+
+* Python for Programmers, First Edition by Paul Deitel (Safari)
+
+* Python Crash Course, Second Edition by Eric Matthes (Safari)
+
+.Websites
