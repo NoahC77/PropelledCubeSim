@@ -1,0 +1,33 @@
+= Bi-Weekly Project Goals
+Noah Castetter <noahcastetter@gmail.com>
+v0.2, 6-6-2020
+:description: A document used to for promoting accountability and succesful planning
+:commit: c1d60683c5adbbf57a70de53576b66b84698c577
+:commitMessage: Complete 3D handling section of main doc and create flowchart for 3D environment handling.
+:imagesdir: ../assets
+:lastEdited: Noah Castetter 6-6-2020
+
+:imagesdir:
+:lastEdited:
+:toc:
+
+== Goals
+
+.Goal to Complete by 6/11/2020
+
+* Noah
+** Complete collision detection section of main doc.
+** Determine which set of algorithms will be used for ML cube.
+** Write a section on the former two.
+
+.Goals to Complete by 6/04/2020
+
+* Noah
+** Create flowchart for 3D environment handling. DONE
+** Complete 3D handling section of main doc. DONE
+
+* Michelle
+** <put goals here and commit>
+
+== Workflow Guide
+Git is a integral component of the workflow this team will follow. The following git versioning model being implemented is adopted from Jerome Sol.

@@ -1,11 +1,20 @@
-== Useful Resources
+= Useful Resources
+Noah Castetter <noahcastetter@gmail.com>
+v0.1, 6-6-2020
+:description: A document used to keep records of resources which are useful to the project.
+:commit: f7b7468ea959f7fc1588dea13913bb9556a2bade
+:commitMessage: Complete 3D handling section of main doc and create flowchart for 3D environment handling.
+:imagesdir: ../assets
+:lastEdited: Noah Castetter 6-6-2020
 
 _All safari books can be accessed through https://www.utdallas.edu/library/services/electronic-media-and-streaming/ebooks/[UTD Library Website]_
 
 .Books
 
 * Python for Programmers, First Edition by Paul Deitel (Safari)
-
 * Python Crash Course, Second Edition by Eric Matthes (Safari)
 
 .Websites
+
+.Videos
+

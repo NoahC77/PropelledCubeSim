@@ -1,10 +1,80 @@
-= Propelled Cube Team Win Cons and Summary
+= Propelled Cube Team Win Cons and Design Documentation
+Noah Castetter <noahcastetter@gmail.com>
+v0.2, 6-6-2020
+:description: A discussion of design alternatives and a solication for collaboration among the PropelledCube team or anyone.
+:commit: c1d60683c5adbbf57a70de53576b66b84698c577 
+:commitMessage: Complete 3D handling section of main doc and create flowchart for 3D environment handling.
+:imagesdir: ../assets
+:lastEdited: Noah Castetter 6-6-2020
+
+:toc: left
+:toclevels: 4
 
 == Summary of Minimum Viable Product
 
-A set of software which utilizes atleast one of UTD's HPC clusters to run a physics simulation which uses an ideal setting with no air resistance to simulate a cube navigating around geometric obstacles and improving the efficiency at which it moves around these geometric objects using some sort of machine learning and python. The usefulness of a visualization of the simulation is yet to be determined, but who knows.
+A set of software which utilizes atleast one of UTD's HPC clusters to run a physics simulation. This simulation uses an ideal setting with no air resistance to simulate a cube navigating around geometric obstacles and improving the efficiency at which it moves around these geometric objects using some sort of machine learning and python. The usefulness of a visualization of the simulation is yet to be determined, but who knows.
 
 The efficiency of the cube's movement around the obstacles is measured in how far in the x-axis the cube travelled without touching a single obstacle or if the cube reaches the end of the 3D space. The cube starts at (0, 0, 0) with the dimensions of length = 10 and a large 3D space to move in which is walled off by the xz-plane and xy-plane. In an admittedly extremely abstract and ignorant way, our goal is to use Machine Learning to make a cube go super fast around a set of obstacles for as far as it can without touching anything or get to the other side of the 3D space.
+
+== Big Schedule
+
+MUST BE FINISHED BY AUGUST 17
+
+TENTATIVE PROJECT RESEARCH DUE DATE 6-17-2020
+
+
+.Required Characteristics of the MVP
+
+* Must use kinematic equations and stuff, *AIR RESISTANCE NOT INCLUDED*.
+* Cube navigation must be done through machine learning (no hardcode)
+
+== Core Subproducts
+
+Parallelizing the process of handling the 3D environment, collision detection, cube physics, and ai driven cube navigation and improvement are the big echilidas. The most intuitively parallelizable subproduct and first subproduct, the 3D environment handling, is designed as follows.
+
+=== 3D Environment
+Running the simualtion and querying for data related to the 3D space is handled by the following set of classes.
+
+image::CubeSeshUML.png[width=1500,height=1500]
+
+==== CubeSesh Class
+The Cube Sesh class is responsible for generating the square grid graph of Space3 objects, serving as an interface for data related to the 3D space, running a trial, *optimizing memory allocation*, and generating an .zip of data related to the run. In order to complete the former responsibilities *The CubeSesh needs atleast the following information from the environment or from the user.*
+
+.Essential input for the CubeSesh class
+
+* Space Size
+* L3_CACHE_SIZE
+* NUM_SPACES
+* Max x domain
+* Max y domain
+* Max z domain
+
+The 3D space in which this cube can move around without dying in is represented with the CubeSesh object. The CubeSesh object stores this 3D space in a square grid graph, by segregating the 3D space into n*n: smaller, evenly sized, exhaustive rectangular prism shaped 3D subspaces. These subspaces are represented with an undirected and unweighted nxn square grid graph.
+
+Using it's undireced square grid graph of Space3 objects, the Cube Sesh class is *an interface to access data related to the 3D space.* The CubeSesh class may return the following information.
+
+image::CubeSeshDiagram.png[width=500,height=500,role=right]
+
+.Data Accesible DIRECTLY through CubeSesh
+
+* Any subspace within the 3D Space
+* The subspace in which the cube is currently in
+
+==== Space3 Class
+A Space3 object is responsible for finding the first collision in a CubeSesh, generating an Obstacle queue, and maintaining accurate and precise active data. *A CubeSesh has a undirected square grid graph of Space3 objects. CubeSesh's 3D space is made of this square grid graph of mutually exclusive Space3 objects.* _The process of a cube moving from zone to zone should be approached cautiously and will be explored later._
+
+Useful properties are as folows. Let x, y, and z represent the largest x, y, and z value within the *CubeSesh's* 3D space. Let n represent the number of Space3 objects used by a CubeSesh.
+
+.Space3 Dimensions & Specifications
+
+* x length: x/n
+* y length: y/n
+* z length: z
+* Neighborhood range: [2, 4]
+* Memory size must be 1/10 of 
+
+==== Obstacle Class
+A Obstacle object is responsible for providing accurate shape data, determining if a given point is within an obstacle, and have a mobile center vertex. *A Cone, Cube, Pyramid, and Sphere are all obstacles.* The obstacle class has a intercept function which the formerly mentioned child classes of Obstacle override.
 
 .Obstacles the cube will need to avoid
 
@@ -13,15 +83,21 @@ The efficiency of the cube's movement around the obstacles is measured in how fa
 * Cubes
 * Pyramids
 
-.Required Characteristics of the MVP
+Each different type of the four obstacle subclasses overrides the same setSize() Obstacle parent function as a result of their geometric properties.
 
-* Must use kinematic equations and stuff, *AIR RESISTANCE NOT INCLUDED*.
-* Cube navigation must be done through machine learning (no hardcode)
+== Collision Detection
 
-== What we will use
+image::CubeProcessFlowChart.png[width=1500,height=1500]
 
-Development will be done on the 
+== Parallelization of Process
 
-MUST BE FINISHED BY AUGUST 17
+Effective parallelization of this project includes minimizing the time spent moving things in and out of cache.
 
+.Ganymede Worker Node specs
 
+* L2 cache size = 5 MiB
+* L3 cachze size = 50 MiB (shared among cores)
+* Cores = 20
+* Threads = 40
+
+For more details on Ganymede worker node hardware specs go link:here.[https://en.wikichip.org/wiki/intel/xeon_e5/e5-2698_v4
